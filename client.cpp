@@ -11,11 +11,12 @@
 #define PORT	 8080
 #define MAXLINE 1024
 	
-// Driver code
-int main() {
-	int sockfd;
+
+
+void sendmessage(const char* inp) {
+    int sockfd;
 	char buffer[MAXLINE];
-	const char *hello = "Hello from client";
+	const char *hello = inp;
 	struct sockaddr_in	 servaddr;
 	
 	// Creating socket file descriptor
@@ -41,8 +42,16 @@ int main() {
 				MSG_WAITALL, (struct sockaddr *) &servaddr,
 				&len);
 	buffer[n] = '\0';
-	printf("Server : %s\n", buffer);
+	//printf("Server : %s\n", buffer);
+    printf(buffer);
 	
 	close(sockfd);
-	return 0;
+}
+
+
+// Driver code
+int main() {
+    for (int i = 0; i < 10; i++) {
+    sendmessage("12.34");
+    }
 }
