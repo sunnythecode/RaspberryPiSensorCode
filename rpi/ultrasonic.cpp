@@ -21,7 +21,7 @@ using namespace std;
 
 
 struct timeval tv;
-string ID = "0:"
+char ID = "0:";
 
 void sendmessage(const char* inp) {
     int sockfd;
