@@ -21,7 +21,7 @@ using namespace std;
 
 
 struct timeval tv;
-char ID = "0:";
+string ID = "0:";
 
 void sendmessage(const char* inp) {
     int sockfd;
@@ -41,8 +41,8 @@ void sendmessage(const char* inp) {
 	servaddr.sin_family = AF_INET;
 	servaddr.sin_port = htons(PORT);
 	int trueflag = 1;
-	setsockopt(fd, SOL_SOCKET, SO_BROADCAST, &trueflag, sizeof trueflag
-	servaddr.sin_addr.s_addr = inet_addr("255.255.255.255");
+	setsockopt(sockfd, SOL_SOCKET, SO_BROADCAST, &trueflag, sizeof trueflag);
+	servaddr.sin_addr.s_addr = inet_addr("192.168.86.255");
 		
 	int n;
     socklen_t len;
@@ -50,14 +50,12 @@ void sendmessage(const char* inp) {
 	sendto(sockfd, (const char *)hello, strlen(hello), 0, (const struct sockaddr *) &servaddr, sizeof(servaddr));
 	printf("Hello message sent.\n");
 			
-	n = recvfrom(sockfd, (char *)buffer, MAXLINE,
-				MSG_WAITALL, (struct sockaddr *) &servaddr,
-				&len);
-	buffer[n] = '\0';
+	//n = recvfrom(sockfd, (char *)buffer, MAXLINE, MSG_WAITALL, (struct sockaddr *) &servaddr, &len);
+	//buffer[n] = '\0';
 	//printf("Server : %s\n", buffer);
-    printf(buffer);
+    //printf(buffer);
 	
-	close(sockfd);
+	//close(sockfd);
 }
 
 double getTime()
@@ -135,12 +133,14 @@ int main ()
 
 		initializePins();
 
-		for(int i = 0; i < 10; ++i) // for example: 100 measurements
+		while (true) // for example: 100 measurements
 		{
 			double distance = detectDistance();
 			string temp = to_string(distance);
+			string msg = ID + temp;
+			cout << distance;
 
-			sendmessage(ID + temp);
+			sendmessage(msg.c_str());
 		}
 
 		gpioTerminate();
