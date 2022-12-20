@@ -14,14 +14,14 @@
 class PiModule {
     public:
     std::string ID;
-    bool stop_thread = false;
+    bool stop_thread;
     
     PiModule(int inputID); //EVERYTHING NEEDS TO BE NONSTATIC
 
     void start_server(); // Run this function once and ur good to go (its threaded)
-    double current_val = -1;
+    double current_val;
     double get_distance();
-    double run_update();
+    void run_update();
     bool stop_server();
 
     int sockfd_g;
