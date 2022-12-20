@@ -21,7 +21,7 @@ using namespace std;
 
 
 struct timeval tv;
-
+string ID = "0:"
 
 void sendmessage(const char* inp) {
     int sockfd;
@@ -40,7 +40,9 @@ void sendmessage(const char* inp) {
 	// Filling server information
 	servaddr.sin_family = AF_INET;
 	servaddr.sin_port = htons(PORT);
-	servaddr.sin_addr.s_addr = inet_addr("192.168.120.145");
+	int trueflag = 1;
+	setsockopt(fd, SOL_SOCKET, SO_BROADCAST, &trueflag, sizeof trueflag
+	servaddr.sin_addr.s_addr = inet_addr("255.255.255.255");
 		
 	int n;
     socklen_t len;
@@ -138,7 +140,7 @@ int main ()
 			double distance = detectDistance();
 			string temp = to_string(distance);
 
-			sendmessage(temp);
+			sendmessage(ID + temp);
 		}
 
 		gpioTerminate();
