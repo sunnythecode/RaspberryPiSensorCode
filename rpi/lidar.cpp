@@ -1,5 +1,8 @@
 #include <iostream>
 #include "include/lidarlite_v3.h"
+#include "config.h"
+
+
 #include <linux/types.h>
 #include <cstdio>
 #include <unistd.h>
@@ -19,7 +22,6 @@ using namespace std;
 
 
 struct timeval tv;
-string ID = "0:";
 int sockfd;
 char buffer[MAXLINE];
 

@@ -1,5 +1,7 @@
 #include <pigpio.h>
 #include <iostream>
+#include "config.h"
+
 #include <time.h>
 #include <unistd.h>
 #include <string>
@@ -21,7 +23,6 @@ using namespace std;
 
 
 struct timeval tv;
-string ID = "0:";
 int sockfd;
 char buffer[MAXLINE];
 
