@@ -79,7 +79,7 @@ int main ()
         distance = myLidarLite.readDistance();
         string temp = to_string(distance);
         string msg = ID + temp;
-        cout << distance;
+        cout << msg;
 
         sendmessage(msg.c_str());
     }

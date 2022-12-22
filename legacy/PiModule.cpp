@@ -25,12 +25,12 @@ void PiModule::run_update() {
 		
 		
 		std::string buffer_str(buffer_g);
-        printf(buffer_str.c_str());
+        std::cout << buffer_str.c_str();
 		if (buffer_str.rfind(ID + ":") == 0) { // If multiple Pis r sending, check ID prefix -> "0:data" or "1:data" where 0 and 1 are RPI IDs
-			printf("received");
+			std::cout << "received";
             current_val = std::atof(buffer_g);
 		} else {
-			printf("wrongID");
+			std::cout << "wrongID";
         }
         
         
