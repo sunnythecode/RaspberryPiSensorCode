@@ -43,7 +43,7 @@ void start_server() {
 	servaddr.sin_port = htons(PORT);
 	int trueflag = 1;
 	setsockopt(sockfd, SOL_SOCKET, SO_BROADCAST, &trueflag, sizeof trueflag);
-	servaddr.sin_addr.s_addr = inet_addr("10.23.67.255");
+	servaddr.sin_addr.s_addr = inet_addr("255.255.255.255");
 	
 	}
 

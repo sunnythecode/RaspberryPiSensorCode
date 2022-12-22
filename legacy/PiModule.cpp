@@ -15,10 +15,12 @@ void PiModule::run_update() {
 	socklen_t len;
 	const char *hello = "Hello from server";
 	while (!stop_thread) {
+		std::cout << "start wait" << std::endl;
 		n = recvfrom(sockfd_g, (char *)buffer_g, MAXLINE,
 					MSG_WAITALL, ( struct sockaddr *) &cliaddr_g,
 					&len);
 		buffer_g[n] = '\0';
+		std::cout << "buffer_g";
 		
 
 		//sendto(sockfd_g, (const char *)hello, strlen(hello), 0, (const struct sockaddr *) &cliaddr_g, len);
@@ -64,7 +66,7 @@ void PiModule::start_server() {
 	if ( bind(sockfd, (const struct sockaddr *)&servaddr,
 			sizeof(servaddr)) < 0 )
 	{
-		perror("bind failed");
+		perror("bind failed bruh");
 		exit(EXIT_FAILURE);
 	}
 		
