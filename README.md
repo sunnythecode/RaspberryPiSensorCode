@@ -10,8 +10,9 @@ To compile:
 
 To run(Run one of these depending on device):
 
-./bin/lidar.out
+`./bin/lidar.out`
 
-./bin/us.out
+`./bin/us.out`
 
-./legacy.out
+`./bin/legacy.out`
+
