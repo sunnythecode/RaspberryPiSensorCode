@@ -71,7 +71,7 @@ void sendmessage(const char* inp) {
 int main () 
 {
     myLidarLite.i2c_init();
-    myLidarLite.configure(0);
+    myLidarLite.configure(lidar_mode);
     __u16 distance;
 
     start_server();
