@@ -25,6 +25,7 @@ int main() {
    pi.pi_thread.detach();
    while (1) {
        std::cout << pi.get_distance() << std::endl;
+       usleep(1000000);
    }
    
    return 0;

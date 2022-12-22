@@ -84,6 +84,7 @@ int main ()
         cout << msg;
 
         sendmessage(msg.c_str());
+		usleep(10000);
     }
 
     return 0;
