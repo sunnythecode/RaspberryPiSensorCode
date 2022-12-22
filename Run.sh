@@ -1,2 +1,2 @@
-cd ~
-./home/pi/RaspberryPiSensorCode/bin/lidar.out
+cd 
+.RaspberryPiSensorCode/bin/lidar.out
