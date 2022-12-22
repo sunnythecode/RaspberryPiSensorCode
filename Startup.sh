@@ -12,7 +12,7 @@ Description=SensorUDP
 After=multi-user.target
 [Service]
 Type=idle
-ExecStart=./home/pi/RaspberryPiSensorCode/bin/lidar.out
+ExecStart=/home/pi/RaspberryPiSensorCode/Run.sh
 [Install]
 WantedBy=multi-user.target" | sudo tee /lib/systemd/system/sensorsUDP.service
 
