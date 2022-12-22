@@ -22,9 +22,12 @@ int main() {
     std::cout << "stop";
     */
    PiModule pi = PiModule(0);
-   pi.pi_thread.join();
-
-    return 0;
+   pi.pi_thread.detach();
+   while (1) {
+       std::cout << pi.get_distance() << std::endl;
+   }
+   
+   return 0;
 
 
 }

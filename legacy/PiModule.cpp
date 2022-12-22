@@ -15,24 +15,24 @@ void PiModule::run_update() {
 	socklen_t len;
 	const char *hello = "Hello from server";
 	while (!stop_thread) {
-		std::cout << "start wait" << std::endl;
+		//std::cout << "start wait" << std::endl;
 		n = recvfrom(sockfd_g, (char *)buffer_g, MAXLINE,
 					MSG_WAITALL, ( struct sockaddr *) &cliaddr_g,
 					&len);
 		buffer_g[n] = '\0';
-		std::cout << "buffer_g";
+		//std::cout << "buffer_g";
+		std::cout << buffer_g << std::endl;
 		
 
 		//sendto(sockfd_g, (const char *)hello, strlen(hello), 0, (const struct sockaddr *) &cliaddr_g, len);
 		
-		
 		std::string buffer_str(buffer_g);
-        std::cout << buffer_str.c_str();
+        //std::cout << buffer_str.c_str();
 		if (buffer_str.rfind(ID + ":") == 0) { // If multiple Pis r sending, check ID prefix -> "0:data" or "1:data" where 0 and 1 are RPI IDs
-			std::cout << "received";
-            current_val = std::atof(buffer_g);
+			//std::cout << "received";
+            current_val = std::atof(buffer_str.substr(2, buffer_str.length() - 1).c_str());
 		} else {
-			std::cout << "wrongID";
+			//std::cout << "wrongID";
         }
         
         
@@ -47,6 +47,7 @@ void PiModule::start_server() {
 	char buffer[MAXLINE];
 	const char *hello = "Hello from server";
 	struct sockaddr_in servaddr, cliaddr;
+	current_val = -1;
 		
 	// Creating socket file descriptor
 	if ( (sockfd = socket(AF_INET, SOCK_DGRAM, 0)) < 0 ) {
