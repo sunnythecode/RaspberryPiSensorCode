@@ -22,12 +22,13 @@ using namespace std;
 
 struct timeval tv;
 string ID = "0:";
+int sockfd;
+char buffer[MAXLINE];
 
-void sendmessage(const char* inp) {
-    int sockfd;
-	char buffer[MAXLINE];
-	const char *hello = inp;
-	struct sockaddr_in	 servaddr;
+struct sockaddr_in	 servaddr;
+
+void start_server() {
+    
 	
 	// Creating socket file descriptor
 	if ( (sockfd = socket(AF_INET, SOCK_DGRAM, 0)) < 0 ) {
@@ -42,8 +43,13 @@ void sendmessage(const char* inp) {
 	servaddr.sin_port = htons(PORT);
 	int trueflag = 1;
 	setsockopt(sockfd, SOL_SOCKET, SO_BROADCAST, &trueflag, sizeof trueflag);
-	servaddr.sin_addr.s_addr = inet_addr("192.168.86.255");
-		
+	servaddr.sin_addr.s_addr = inet_addr("10.23.67.255");
+	
+	}
+
+void sendmessage(const char* inp) {
+
+	const char *hello = inp;
 	int n;
     socklen_t len;
 		
@@ -124,15 +130,16 @@ double detectDistance()
 
 int main () 
 {
-	if(gpioInitialise() < 0)
+	if(gpioInitialise() < 0) {
 		cout << "PIGPIO initialisation failure!" << endl; 
-
+	}
+	
 	else
 	{
 		cout << "PIGPIO initialisation success!" << endl;
 
 		initializePins();
-
+		start_server();
 		while (true) // for example: 100 measurements
 		{
 			double distance = detectDistance();
