@@ -1,2 +1,2 @@
 cd 
-.RaspberryPiSensorCode/bin/lidar.out
+sudo ./home/pi/RaspberryPiSensorCode/bin/lidar.out
