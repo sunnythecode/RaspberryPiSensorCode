@@ -14,9 +14,16 @@
 class PiModule {
     public:
     std::string ID;
+    //std::thread pi_thread;
     bool stop_thread;
     
-    PiModule(int inputID); //EVERYTHING NEEDS TO BE NONSTATIC
+   PiModule(int inputID) {
+        ID = std::to_string(inputID);
+        stop_thread = false;
+        std::cout << "check 0";
+        std::thread pi_thread(&PiModule::start_server, this);
+        pi_thread.detach();
+    } //EVERYTHING NEEDS TO BE NONSTATIC
 
     void start_server(); // Run this function once and ur good to go (its threaded)
     double current_val;

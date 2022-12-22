@@ -6,10 +6,7 @@
 #define PORT	 8080
 #define MAXLINE 1024
 	
-PiModule::PiModule(int inputID) {
-	ID = std::to_string(inputID);
-	stop_thread = false;
-}
+
 
 
 
@@ -22,14 +19,21 @@ void PiModule::run_update() {
 					MSG_WAITALL, ( struct sockaddr *) &cliaddr_g,
 					&len);
 		buffer_g[n] = '\0';
-		printf("Client : %s\n", buffer_g);
+		
+
 		//sendto(sockfd_g, (const char *)hello, strlen(hello), 0, (const struct sockaddr *) &cliaddr_g, len);
 		
 		
 		std::string buffer_str(buffer_g);
+        printf(buffer_str.c_str());
 		if (buffer_str.rfind(ID + ":") == 0) { // If multiple Pis r sending, check ID prefix -> "0:data" or "1:data" where 0 and 1 are RPI IDs
-			current_val = std::atof(buffer_g);
-		}
+			printf("received");
+            current_val = std::atof(buffer_g);
+		} else {
+			printf("wrongID");
+        }
+        
+        
 		
 		//frc::SmartDashboard::PutNumber(buffer_g, 0);
 	}
@@ -72,7 +76,6 @@ void PiModule::start_server() {
 	cliaddr_g = cliaddr;
 
 	len = sizeof(cliaddr); //len is value/result
-	//std::thread UDP_thread([] {run_update());
 	run_update();
 	
 }
@@ -84,4 +87,3 @@ bool PiModule::stop_server() {
 	//UDP_thread.join();
 	return true;
 }
-
