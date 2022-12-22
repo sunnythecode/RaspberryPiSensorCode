@@ -1,3 +1,3 @@
-#include<string>
+#include <string>
 
-inline std::string ID = "0:";
+std::string ID = "0:";
