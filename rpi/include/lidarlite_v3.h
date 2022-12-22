@@ -17,6 +17,14 @@
   limitations under the License.
 ------------------------------------------------------------------------------*/
 
+#include <linux/types.h>
+#include <linux/i2c-dev.h>
+#include <sys/ioctl.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include <stdio.h>
+
+
 #ifndef LIDARLite_v3_h
 #define LIDARLite_v3_h
 
