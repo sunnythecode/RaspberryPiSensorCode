@@ -73,18 +73,23 @@ int main ()
     myLidarLite.i2c_init();
     myLidarLite.configure(lidar_mode);
     __u16 distance;
-
+	__u8 busyflag;
     start_server();
     while (true) // for example: 100 measurements
     {
-        myLidarLite.takeRange();
-        distance = myLidarLite.readDistance();
-        string temp = to_string(distance);
-        string msg = ID + temp;
-        cout << msg;
 
-        sendmessage(msg.c_str());
-		usleep(10000);
+		if (busyflag == 0x00) {
+			myLidarLite.takeRange();
+			distance = myLidarLite.readDistance();
+			string temp = to_string(distance);
+			string msg = ID + temp;
+			cout << msg;
+
+			sendmessage(msg.c_str());
+			usleep(10000);
+
+		}
+
     }
 
     return 0;
